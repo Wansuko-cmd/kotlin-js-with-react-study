@@ -3,17 +3,19 @@ package app
 import react.*
 import react.dom.*
 
-class App : RComponent<RProps, RState>() {
-    override fun RBuilder.render() {
-        for(i in 0..5){
-            h1{
-                +"${square(i)}"
-            }
-        }
+interface State : RState{
+    var text: String
+}
+
+class App : RComponent<RProps, State>() {
+    override fun State.init() {
+        text = "INIT"
     }
 
-    fun square(num: Int): Int{
-        return num*num
+    override fun RBuilder.render() {
+        h1 {
+            +state.text
+        }
     }
 }
 
