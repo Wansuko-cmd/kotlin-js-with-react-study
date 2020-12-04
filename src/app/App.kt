@@ -7,9 +7,13 @@ interface State : RState{
     var text: String
 }
 
-class App : RComponent<RProps, State>() {
-    override fun State.init() {
-        text = "INIT"
+interface Props: RProps{
+    var text: String
+}
+
+class App(props: Props) : RComponent<Props, State>(props) {
+    override fun State.init(props: Props) {
+        text = props.text
     }
 
     override fun RBuilder.render() {
@@ -19,4 +23,6 @@ class App : RComponent<RProps, State>() {
     }
 }
 
-fun RBuilder.app() = child(App::class) {}
+fun RBuilder.app(text: String) = child(App::class) {
+    attrs.text = text
+}
