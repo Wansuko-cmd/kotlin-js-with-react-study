@@ -11,8 +11,9 @@ $yarn start　を実行することで起動することが出来る。
 <p>kotlin/js + react.jsでは、基本的にkotlinで書くことになる。</p>
 <p>また、npm（yarn）を使う方法と、Gradleを使う方法とある。</p>
 <p>コンポーネントの定義はRComponentを継承することにより行う</p>
-<p>また、「RBuilder.コンポーネント名()」も定義する必要がある。
+<p>また、「RBuilder.コンポーネントの呼び出し名()」も定義する必要がある。
 こちらはPropsを使う時にいじる必要が出てくるところである。</p>
+<p>定義したコンポーネントは、コンポーネントの呼び出し名()とすれば使用することが出来る。</p>
 
 <h2>・文字の表示について</h2>
 <p>文字の表示は、それぞれのコンポーネントのrenderに入れることで反映させることが出来る。</p>
@@ -66,3 +67,21 @@ RComponentを継承するときに、
 </ol>
 <p>また、Stateの初期化の際にPropsの値を利用したい場合は、
 Props型のものを引数に持たせることが必要である。</p>
+<p>Propsに値を渡す際はコンポーネントを呼び出すときに、hoge(value)といった具合に
+引数として記述する必要がある。</p>
+
+<h2>cssについて</h2>
+<p>kotlin/jsでは、cssファイルもkotlinで書くことが可能である。</p>
+<p>従ってcssも型安全で書けるという意味では有効である。</p>
+<p>しかし本来cssとktファイルに分けてゐたものを一つにするため、コードはより丁寧に
+書く必要がある。</p>
+<p>また、こちらはyarnやnpm等で導入する必要がある。具体的には以下のコマンドを打てばよい</p>
+<p>yarn add @jetbrains/kotlin-css @jetbrains/kotlin-css-js @jetbrains/kotlin-styled inline-style-prefixer styled-components@4</p>
+<p>これによって書くことが出来るようになる。</p>
+<p>実際にkotlinで書くには、本来使っていたHTMLタグ（h1等）にstyledをつける
+（styledH1）必要がある。</p>
+<p>その後、そのタグの中でcssのくくりを書き、その中で記述していく必要がある</p>
+<p>記述例</p>
+<p>styledH1{css{backgroundColor = Color.red}}</p>
+<p>もちろんここに変数を入れることも可能である。</p>
+<p>ちなみに単にcssファイルで書くことも可能である。</p>
