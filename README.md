@@ -90,15 +90,22 @@ Props型のものを引数に持たせることが必要である。</p>
 <p>上の書き方であれば、特定のHTMLタグにしかスタイルシートにしか適用できない。</p>
 <p>そこで、複数のHTMLタグに適用できるものとして、StyleSheetクラスが存在する。</p>
 <p>これをobject型のものに継承させて記述することで、cssのセットのようなものを作ることが出来る。</p>
-<p>具体的には、val 変数名 by css{}と記述して、中にはchildren(HTMLタグ){}等と書いて適用させる。</p>
+<p>具体的には、「val 変数名 by css{}」と記述して、中にはchildren(HTMLタグ){}等と書いて適用させる。</p>
 <p>またこれを利用する際には、単に使用したいHTMLタグのcssのところに
-`+継承したobjectの名前.変数名`としてやるとよい。</p>
+「+継承したobjectの名前.変数名」としてやるとよい。</p>
+
+<h2>cssについて　その３</h2>
+<p>全体のテーマを合わせる為に、ページ全体に共通のcssを適用させたい場合があるとする。</p>
+<p>その際にはmain関数の中に特定の記述をすることが必要である。</p>
+<p>具体的には、StyledComponents.infectGlobal(CSSBuilder().apply{}.toString())を
+記述する必要がある。</p>
+<p>これをmain関数の中に入れたうえで、apply{}の中にkotlinベースのcssを書くことで適用できる。</p>
 
 <h2>classNameについて</h2>
-<p>通常のHTMLタグであれば<p>`div(classes="hoge"){}`</p>のようにして
+<p>通常のHTMLタグであれば「div(classes="hoge"){}」のようにして
 クラス名やid名を割り振ることが出来る。
 <p>しかし、styledのついたHTMLタグの場合は、そのタグの中のcss{}の中に記述する必要がある。</p>
-<p>記述の仕方は、`classes = mutableListOf("hoge", "foo", "bar")`といった感じである。</p>
+<p>記述の仕方は、「classes = mutableListOf("hoge", "foo", "bar")」といった感じである。</p>
 <p>これによってbootstrap等のcssのフレームワークの導入も簡単にできる。</p>
 
 <h2>Input等について</h2>
@@ -107,3 +114,11 @@ Props型のものを引数に持たせることが必要である。</p>
 <p>このタグの中にonChangeFunctionを用意することで、値変更時の動作を書くことが出来る。</p>
 <p>Inputの場合、入力された値はit.targetに格納される。</p>
 <p>この値はリアルタイムで変更する。</p>
+
+<h2>Routerについて</h2>
+<p>URLごとに処理を変えたいという場面は当然存在する。</p>
+<p>その際にはRouterを導入することが必要となってくる。</p>
+<p>Routerを導入する際には「yarn add @jetbrains/kotlin-react-router-dom」を実行する。</p>
+<p>また、私の環境ではオリジナルの方の導入も必要であった。これは必須だろうと思われる。</p>
+<p>つまり、「yarn add react-router-dom」もセットで実行する必要がある。</p>
+<p>Routerは、コンポーネントの１つとして記述する</p>
