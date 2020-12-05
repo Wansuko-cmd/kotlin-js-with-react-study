@@ -1,7 +1,10 @@
 package app
 
 import kotlinx.css.*
+import kotlinx.html.js.onChangeFunction
+import org.w3c.dom.HTMLInputElement
 import react.*
+import react.dom.input
 import styled.*
 import test.test
 
@@ -40,13 +43,17 @@ class App(props: Props) : RComponent<Props, State>(props) {
             css{
                 +ComponentStyles.wrapper
             }
-            styledButton() {
-                css{
-                    classes = mutableListOf("btn", "btn-info")
+            test(state.text)
+        }
+        input{
+            attrs{
+                onChangeFunction = {
+                    val target = it.target as HTMLInputElement
+                    setState{
+                        text = target.value
+                    }
                 }
-                +state.text
             }
-            test()
         }
     }
 }

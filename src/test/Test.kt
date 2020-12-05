@@ -6,12 +6,18 @@ import react.RProps
 import react.RState
 import styled.styledH1
 
-class Test : RComponent<RProps, RState>() {
+interface TestProps: RProps{
+    var text: String
+}
+
+class Test(props: TestProps) : RComponent<TestProps, RState>(props) {
     override fun RBuilder.render() {
         styledH1{
-            +"TEST"
+            +props.text
         }
     }
 }
 
-fun RBuilder.test() = child(Test::class){}
+fun RBuilder.test(text: String) = child(Test::class){
+    attrs.text = text
+}
