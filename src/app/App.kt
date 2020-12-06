@@ -4,7 +4,7 @@ import kotlinx.css.*
 import kotlinx.html.js.onChangeFunction
 import org.w3c.dom.HTMLInputElement
 import react.*
-import react.dom.input
+import react.dom.*
 import styled.*
 import test.test
 
@@ -32,32 +32,19 @@ object ComponentStyles : StyleSheet("ComponentStyles", isStatic = true) {
     }
 }
 
-class App(props: Props) : RComponent<Props, State>(props) {
-    override fun State.init(props: Props) {
-        text = props.text
-        size = 300
-    }
-
-    override fun RBuilder.render() {
-        styledDiv(){
-            css{
-                +ComponentStyles.wrapper
-            }
-            test(state.text)
-        }
-        input{
-            attrs{
-                onChangeFunction = {
-                    val target = it.target as HTMLInputElement
-                    setState{
-                        text = target.value
-                    }
-                }
-            }
+val app = functionalComponent<Props>{props ->
+    val (text, setText) = useState("")
+    input{
+        attrs.onChangeFunction = {
+            val target = it.target as HTMLInputElement
+            setText(target.value)
         }
     }
+    test(text)
 }
 
-fun RBuilder.app(text: String) = child(App::class) {
-    attrs.text = text
+fun RBuilder.app(handler: Props.() -> Unit) = child(app){
+    attrs{
+        handler()
+    }
 }

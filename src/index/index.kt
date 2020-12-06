@@ -5,6 +5,7 @@ import react.dom.*
 import kotlinx.browser.*
 import kotlinx.css.CSSBuilder
 import kotlinx.css.*
+import react.child
 import routing
 import styled.StyledComponents
 import styled.injectGlobal
@@ -17,7 +18,6 @@ fun main(args: Array<String>) {
     }.toString())
 
     render(document.getElementById("root")) {
-        app("Props")
-        routing()
+        app{text = "FUNCTION"}
     }
 }

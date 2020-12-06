@@ -1,23 +1,16 @@
 package test
 
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
-import styled.styledH1
+import react.*
+import react.dom.h1
 
 interface TestProps: RProps{
     var text: String
 }
 
-class Test(props: TestProps) : RComponent<TestProps, RState>(props) {
-    override fun RBuilder.render() {
-        styledH1{
-            +props.text
-        }
-    }
+val test = functionalComponent<TestProps> {props ->
+    h1{+props.text}
 }
 
-fun RBuilder.test(text: String) = child(Test::class){
-    attrs.text = text
+fun RBuilder.test(text: String) = child(test){
+        attrs.text = text
 }
